@@ -3,12 +3,20 @@ def read_input():
         return f.read()
 
 
+def get_sum_left(nums, pivot):
+    return sum(l
+               for (l, r) in zip(nums, nums[pivot:] + nums[:pivot])
+               if l == r)
+
+
 def main():
     _input = read_input().replace('\n', '')
-    print sum(int(l)
-              for (l, r) in zip(_input, _input[1:] + _input[0])
-              if l == r)
-
+    nums = [int(x)
+            for x in _input]
+    # pt1
+    print get_sum_left(nums, 1)
+    # pt2
+    print get_sum_left(nums, len(nums) / 2)
 
 if __name__ == '__main__':
     main()
